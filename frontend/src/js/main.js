@@ -1145,3 +1145,21 @@ function updateSurvivalScore(air, water, bio) {
 updateSurvivalScore(70, 55, 65);
 
 
+const toggle = document.getElementById("themeToggle");
+  const icon = toggle.querySelector("i");
+
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-theme");
+    icon.classList.replace("fa-moon", "fa-sun");
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    const isDark = document.body.classList.contains("dark-theme");
+    icon.classList.toggle("fa-moon", !isDark);
+    icon.classList.toggle("fa-sun", isDark);
+
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
