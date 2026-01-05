@@ -926,30 +926,33 @@
     </div>
   </section>
 
-  <section class="garden-game">
-    <h2>Build Your Garden 🌱</h2>
-    <p>Drag plants into the garden to increase oxygen!</p>
+  <section class="garden-game" data-aos="fade-up">
+    <div class="garden-game-overlay reveal"  >
 
-    <!-- Oxygen Meter -->
-    <div class="oxygen-meter">
-      <span>Oxygen Level</span>
-      <div class="meter-bg">
-        <div class="meter-fill" id="oxygen-fill">0%</div>
+      <h2 data-aos="fade-up">Build Your Garden 🌱</h2>
+      <p data-aos="fade-up">Drag plants into the garden to increase oxygen!</p>
+
+      <!-- Oxygen Meter -->
+      <div class="oxygen-meter" data-aos="fade-left">
+        <span>Oxygen Level</span>
+        <div class="meter-bg">
+          <div class="meter-fill" id="oxygen-fill">0%</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Plant Palette -->
-    <div class="plant-palette">
-      <div class="plant" draggable="true" data-oxygen="5">🌷</div>
-      <div class="plant" draggable="true" data-oxygen="10">🌳</div>
-      <div class="plant" draggable="true" data-oxygen="7">🌻</div>
-      <div class="plant" draggable="true" data-oxygen="3">🌵</div>
-      <div class="plant" draggable="true" data-oxygen="8">🍀</div>
-    </div>
+      <!-- Plant Palette -->
+      <div class="plant-palette" data-aos="fade-right">
+        <div class="plant" draggable="true" data-oxygen="5">🌷</div>
+        <div class="plant" draggable="true" data-oxygen="10">🌳</div>
+        <div class="plant" draggable="true" data-oxygen="7">🌻</div>
+        <div class="plant" draggable="true" data-oxygen="3">🌵</div>
+        <div class="plant" draggable="true" data-oxygen="8">🍀</div>
+      </div>
 
-    <!-- Garden Area -->
-    <div class="garden-plot" id="garden-plot">
-      <p>Drop plants here 🌼</p>
+      <!-- Garden Area -->
+      <div class="garden-plot" id="garden-plot" data-aos="fade-up">
+        <p>Drop plants here 🌼</p>
+      </div>
     </div>
   </section>
 
@@ -1586,7 +1589,7 @@
   </section>
 
 
-  
+
 
 
 
@@ -1758,9 +1761,9 @@
     </div>
   </div>
 
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ws110ZzXAkEnbVsIy9g8d";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+  <script>
+    (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "ws110ZzXAkEnbVsIy9g8d"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+  </script>
 
 </body>
 

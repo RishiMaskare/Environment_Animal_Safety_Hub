@@ -300,21 +300,25 @@ select {
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 0.8;
@@ -326,6 +330,7 @@ select {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -337,6 +342,7 @@ select {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -348,6 +354,7 @@ select {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -358,12 +365,14 @@ select {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -371,9 +380,11 @@ select {
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-15px);
   }
+
   60% {
     transform: translateY(-7px);
   }
@@ -779,6 +790,7 @@ body {
     margin-bottom: 25px;
   }
 }
+
 .glossary-section {
   padding: 80px 20px;
   background: var(--bg-color);
@@ -824,14 +836,15 @@ body {
 
 :root {
   /* COLORS UPDATED TO MATCH YOUR THEME */
-  --bg-color: #f8fff9; /* Very pale mint/white background */
-  
+  --bg-color: #f8fff9;
+  /* Very pale mint/white background */
+
   /* Myth: "Terracotta/Autumn" - Warm earth tones, not angry red */
   --myth-gradient: linear-gradient(135deg, #c54242 0%, #ff943c 100%);
-  
+
   /* Fact: "Eco Green" - Matches your header */
   --fact-gradient: linear-gradient(135deg, #19551c 0%, #41cd48 100%);
-  
+
   --text-dark: #2c3e50;
   --text-light: #ffffff;
 }
@@ -885,7 +898,8 @@ body {
 }
 
 .myth-card-wrapper {
-  height: 320px; /* Slightly shorter for a cleaner look */
+  height: 320px;
+  /* Slightly shorter for a cleaner look */
   perspective: 1000px;
 }
 
@@ -906,11 +920,13 @@ body {
 }
 
 .myth-card:hover {
-  transform: translateY(-5px); /* Gentle float up on hover */
+  transform: translateY(-5px);
+  /* Gentle float up on hover */
   border: 2px solid rgb(8, 231, 8);
   border-radius: 22px;
   box-shadow: 10px 10px 10px black;
 }
+
 .myth-card.flipped:hover {
   transform: rotateY(180deg) translateY(-5px);
 }
@@ -929,7 +945,7 @@ body {
   align-items: center;
   text-align: center;
   color: white;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -951,8 +967,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .myth-card h3 {
@@ -960,7 +983,7 @@ body {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
-  
+
   opacity: 0.9;
   margin-bottom: 8px;
 }
@@ -976,7 +999,7 @@ body {
 /* --- ACTION PILL (BUTTON) --- */
 .action-pill {
   font-size: 0.8rem;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   padding: 8px 16px;
   color: black;
   border-radius: 20px;
@@ -993,9 +1016,11 @@ body {
 /* --- SHINE EFFECT --- */
 .card-shine {
   position: absolute;
-  top: 0; left: -100%;
-  width: 50%; height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
   transform: skewX(-25deg);
   transition: 0.5s;
 }
@@ -1018,7 +1043,7 @@ body {
   padding: 30px;
   border-radius: 16px;
   background: #f4fbf7;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   animation: fade 1s ease-in-out;
 }
 
@@ -1041,27 +1066,89 @@ body {
 }
 
 @keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .garden-game {
-  background: #eafaf1;
-  padding: 40px 20px;
-  border-radius: 16px;
+  background-image: url("https://images.unsplash.com/photo-1601654253194-260e0b6984f9?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  border: 2px solid #000000;
+  object-fit: cover;
+
+  width: 90%;
+
+  border-radius: 30px;
   text-align: center;
   margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.garden-game h2 {
+  background: #0d2f1067;
+  width: fit-content;
+  text-align: center;
+  padding: 30px 30px;
+  font-size: 2.5rem;
+  color: rgba(253, 253, 253, 0.61);
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  text-shadow: 0px 0px 5px rgb(3, 210, 65);
+
+}
+
+.garden-game p {
+  width: fit-content;
+  text-align: center;
+
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.61);
+  margin-top: 15px;
+  text-shadow: 0px 0px 5px rgb(255, 255, 255);
+
+}
+
+.garden-game-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 30px;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(47, 85, 43, 0.823), rgba(0, 0, 0, 0.692));
+
 }
 
 .oxygen-meter {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  color: rgba(12, 227, 230, 0.61);
+  margin-top: 25px;
+  text-shadow: 0px 0px 5px rgb(35, 246, 249);
+  width: 80%;
+  font-size: 1.5rem;
 }
 
 .meter-bg {
-  width: 80%;
+
   height: 25px;
   background: #c8e6c9;
-  margin: 10px auto;
+  width: 100%;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -1082,8 +1169,9 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 20px;
+  text-shadow: 0 0 20px green;
 }
 
 .plant {
@@ -1094,7 +1182,8 @@ body {
   min-height: 220px;
   width: 80%;
   margin: auto;
-  background: #d0f0c0;
+  font-weight: 700;
+  background: #bcc2b96d;
   border: 2px dashed #4caf50;
   border-radius: 14px;
   display: flex;
@@ -1107,10 +1196,21 @@ body {
   margin: 5px;
   animation: grow 0.5s ease forwards;
 }
+.garden-plot p{
+  color: black;
+  font-size: 20px;
+}
 
 @keyframes grow {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .simulator-section {
@@ -1152,7 +1252,7 @@ body {
   padding: 20px;
   border-radius: 12px;
   width: 150px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .impact-card i {
@@ -1221,6 +1321,7 @@ body {
   background: rgba(244, 67, 54, 0.15);
   color: #c62828;
 }
+
 .timeline-section {
   padding: 80px 20px;
   background: #f4fbf7;
@@ -1275,7 +1376,7 @@ body {
   background: #ffffff;
   padding: 15px 20px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .timeline-content h4 {
@@ -1460,7 +1561,7 @@ body.dark-theme #scrollBottomBtn {
   right: 30px;
   background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   font-family: Arial, sans-serif;
   z-index: 1000;
@@ -1532,6 +1633,7 @@ body.dark-theme .bot-message {
   background: #1e293b;
   color: #e5e7eb;
 }
+
 /* ===== CALCULATOR CTA SECTION ===== */
 .calculator-cta-section {
   display: flex;
@@ -1616,23 +1718,24 @@ body.dark-theme .bot-message {
   .calculator-cta-section {
     padding: 60px 0;
   }
-  
+
   .cta-content h2 {
     font-size: 2rem;
   }
-  
+
   .cta-content p {
     font-size: 1.1rem;
   }
-  
+
   .cta-features {
     gap: 20px;
   }
-  
+
   .cta-feature {
     font-size: 0.9rem;
   }
 }
+
 /* 🌍 Earth Section */
 .earth-wrapper {
   text-align: center;
@@ -1661,7 +1764,7 @@ body.dark-theme .bot-message {
 .sun-rays {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255,215,0,0.4) 20%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 20%, transparent 70%);
   opacity: 0;
   animation: spin 8s linear infinite;
 }
@@ -1670,11 +1773,9 @@ body.dark-theme .bot-message {
 .rain {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    transparent,
-    transparent 8px,
-    rgba(0,0,255,0.4) 10px
-  );
+  background-image: repeating-linear-gradient(transparent,
+      transparent 8px,
+      rgba(0, 0, 255, 0.4) 10px);
   opacity: 0;
   animation: rainFall 0.6s linear infinite;
 }
@@ -1705,21 +1806,45 @@ body.dark-theme .bot-message {
 
 /* Animations */
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  50% { transform: translateX(6px); }
-  75% { transform: translateX(-6px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-6px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes rainFall {
-  from { background-position: 0 0; }
-  to { background-position: 0 20px; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 20px;
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Buttons (Demo) */
@@ -1732,6 +1857,7 @@ body.dark-theme .bot-message {
   color: white;
   cursor: pointer;
 }
+
 /* ================= ECOLIFE CHATBOT ================= */
 .ecolife-chatbot {
   position: fixed;
@@ -1753,7 +1879,7 @@ body.dark-theme .bot-message {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(34,197,94,0.6);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
 }
 
 /* Chatbox */
@@ -1765,7 +1891,7 @@ body.dark-theme .bot-message {
   display: none;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Header */
@@ -1834,8 +1960,15 @@ body.dark-theme .bot-message {
 
 /* Animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
@@ -1849,8 +1982,10 @@ body.dark-theme .bot-message {
   padding: 100px 20px;
   text-align: center;
   color: white;
-  border-radius: 30px; /* Matches your other rounded sections */
-  margin: 40px 20px;   /* Gives it some space from edges */
+  border-radius: 30px;
+  /* Matches your other rounded sections */
+  margin: 40px 20px;
+  /* Gives it some space from edges */
   overflow: hidden;
 }
 
@@ -1867,7 +2002,8 @@ body.dark-theme .bot-message {
 
 .cta-content {
   position: relative;
-  z-index: 2; /* Sits on top of overlay */
+  z-index: 2;
+  /* Sits on top of overlay */
   max-width: 700px;
   margin: 0 auto;
 }
@@ -1927,6 +2063,7 @@ body.dark-theme .bot-message {
     padding: 60px 20px;
     margin: 20px 10px;
   }
+
   .team-cta-section h2 {
     font-size: 1.8rem;
   }
