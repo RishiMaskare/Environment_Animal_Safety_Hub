@@ -1,111 +1,191 @@
-const wasteItems = [
-    { id: 'plastic-bottle', icon: '🥤', type: 'recycle' },
-    { id: 'glass-jar', icon: '🫙', type: 'recycle' },
-    { id: 'paper', icon: '📰', type: 'recycle' },
-    { id: 'banana', icon: '🍌', type: 'compost' },
-    { id: 'apple', icon: '🍎', type: 'compost' },
-    { id: 'leaves', icon: '🍂', type: 'compost' },
-    { id: 'chips', icon: '🥡', type: 'trash' },
-    { id: 'battery', icon: '🔋', type: 'trash' }, // Special handling usually, but 'trash' for simple game
-];
+// Waste Items Database
+const wasteDatabase = {
+    recycle: [
+        { icon: '🥤' },
+        { icon: '🫙' },
+        { icon: '📰' },
+        { icon: '📦' },
+        { icon: '🥫' },
+    ],
+    compost: [
+        { icon: '🍎' },
+        { icon: '🍌' },
+        { icon: '🍂' },
+        { icon: '🥕' },
+        { icon: '🌽' },
+    ],
+    trash: [
+        { icon: '🍬' },
+        { icon: '🥡' },
+        { icon: '🔋' },
+        { icon: '👕' },
+        { icon: '🧻' },
+    ]
+};
 
-let score = 0;
-let timeLeft = 60;
-let gameInterval;
-let spawnInterval;
-let isPlaying = false;
+// Game State
+const game = {
+    score: 0,
+    timeLeft: 60,
+    isPlaying: false,
+    totalAttempts: 0,
+    correctAttempts: 0,
+    currentCombo: 0,
+    spawnRate: 1500,
+};
 
+// DOM Elements
 const gameArea = document.getElementById('gameArea');
-const scoreEl = document.getElementById('score');
-const timerEl = document.getElementById('timer');
+const scoreDisplay = document.getElementById('score');
+const timerDisplay = document.getElementById('timer');
+const accuracyDisplay = document.getElementById('accuracy');
+const startBtn = document.getElementById('startGameBtn');
 const modal = document.getElementById('gameOverModal');
 const finalScoreEl = document.getElementById('finalScore');
+const finalScoreText = document.getElementById('finalScoreText');
 const bins = document.querySelectorAll('.bin');
 
-document.getElementById('startGameBtn').addEventListener('click', startGame);
+let gameTimerInterval;
+let spawnInterval;
+let activeTouchItem = null;
 
-function startGame() {
-    if (isPlaying) return;
-    isPlaying = true;
-    score = 0;
-    timeLeft = 60;
-    scoreEl.innerText = score;
-    timerEl.innerText = timeLeft + 's';
+// Start Button Event Listener
+startBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    initializeGame();
+});
+
+function initializeGame() {
+    if (game.isPlaying) return;
+
+    game.isPlaying = true;
+    game.score = 0;
+    game.timeLeft = 60;
+    game.totalAttempts = 0;
+    game.correctAttempts = 0;
+    game.currentCombo = 0;
+
+    scoreDisplay.innerText = '0';
+    timerDisplay.innerText = '60s';
+    accuracyDisplay.innerText = '--';
+    
+    gameArea.innerHTML = '';
+    gameArea.classList.add('active');
+    startBtn.style.display = 'none';
     modal.style.display = 'none';
-    document.getElementById('startGameBtn').style.display = 'none';
-    
-    gameArea.innerHTML = ''; // Clear area
 
-    // Timer
-    gameInterval = setInterval(() => {
-        timeLeft--;
-        timerEl.innerText = timeLeft + 's';
-        if (timeLeft <= 0) endGame();
+    startGameTimer();
+    spawnWasteItem();
+    spawnInterval = setInterval(spawnWasteItem, game.spawnRate);
+}
+
+function startGameTimer() {
+    gameTimerInterval = setInterval(() => {
+        game.timeLeft--;
+        timerDisplay.innerText = game.timeLeft + 's';
+
+        if (game.timeLeft <= 0) {
+            endGame();
+        }
     }, 1000);
-
-    // Spawn items
-    spawnItem();
-    spawnInterval = setInterval(spawnItem, 2000); // New item every 2 seconds
 }
 
-function spawnItem() {
-    if (!isPlaying) return;
+function spawnWasteItem() {
+    if (!game.isPlaying) return;
 
-    const itemData = wasteItems[Math.floor(Math.random() * wasteItems.length)];
-    const item = document.createElement('div');
-    item.classList.add('waste-item');
-    item.innerText = itemData.icon;
-    item.setAttribute('draggable', 'true');
-    item.dataset.type = itemData.type;
+    const categories = ['recycle', 'compost', 'trash'];
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    const itemData = wasteDatabase[category][Math.floor(Math.random() * wasteDatabase[category].length)];
 
-    // Random horizontal position
-    const maxLeft = gameArea.clientWidth - 60;
-    item.style.left = Math.floor(Math.random() * maxLeft) + 'px';
-    item.style.top = '0px';
+    const itemEl = document.createElement('div');
+    itemEl.classList.add('waste-item');
+    itemEl.innerText = itemData.icon;
+    itemEl.setAttribute('draggable', true);
+    itemEl.dataset.category = category;
 
-    // Drag Events
-    item.addEventListener('dragstart', dragStart);
-    
-    // Touch Events for Mobile
-    item.addEventListener('touchstart', touchStart, {passive: false});
-    item.addEventListener('touchmove', touchMove, {passive: false});
-    item.addEventListener('touchend', touchEnd);
+    const maxLeft = Math.max(gameArea.clientWidth - 60, 0);
+    itemEl.style.left = Math.random() * maxLeft + 'px';
+    itemEl.style.top = '-60px';
 
-    gameArea.appendChild(item);
+    itemEl.addEventListener('dragstart', (e) => {
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('category', category);
+        itemEl.classList.add('dragging');
+    });
 
-    // Falling Animation
-    let top = 0;
+    itemEl.addEventListener('dragend', () => {
+        itemEl.classList.remove('dragging');
+    });
+
+    itemEl.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (!game.isPlaying) return;
+        activeTouchItem = itemEl;
+        itemEl.classList.add('dragging');
+    });
+
+    itemEl.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (!activeTouchItem) return;
+        const touch = e.touches[0];
+        const rect = gameArea.getBoundingClientRect();
+        const x = touch.clientX - rect.left - 30;
+        const y = touch.clientY - rect.top - 30;
+        itemEl.style.left = Math.max(0, Math.min(x, rect.width - 60)) + 'px';
+        itemEl.style.top = Math.max(0, Math.min(y, rect.height - 60)) + 'px';
+    });
+
+    itemEl.addEventListener('touchend', (e) => {
+        if (!activeTouchItem) return;
+        const touch = e.changedTouches[0];
+        const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+        const bin = elemBelow ? elemBelow.closest('.bin') : null;
+        if (bin) {
+            checkAnswer(bin, category, itemEl);
+        } else {
+            itemEl.classList.remove('dragging');
+        }
+        activeTouchItem = null;
+    });
+
+    gameArea.appendChild(itemEl);
+    animateFall(itemEl);
+}
+
+function animateFall(itemEl) {
+    let position = -60;
+    const fallSpeed = 2 + Math.random() * 2;
+    let isRemoved = false;
+
     const fallInterval = setInterval(() => {
-        if (!isPlaying) { clearInterval(fallInterval); return; }
-        
-        // Stop falling if being dragged
-        if (!item.classList.contains('dragging')) {
-            top += 2; // Speed
-            item.style.top = top + 'px';
-        }
-
-        // Remove if hits bottom
-        if (top > gameArea.clientHeight - 60) {
+        if (!game.isPlaying) {
             clearInterval(fallInterval);
-            if (gameArea.contains(item)) gameArea.removeChild(item);
+            return;
         }
-    }, 20);
 
-    // Store interval on element to clear later if needed
-    item.dataset.interval = fallInterval;
+        if (!itemEl.classList.contains('dragging')) {
+            position += fallSpeed;
+            itemEl.style.top = position + 'px';
+        }
+
+        if (position > gameArea.clientHeight) {
+            clearInterval(fallInterval);
+            if (!isRemoved && gameArea.contains(itemEl)) {
+                isRemoved = true;
+                game.totalAttempts++;
+                game.score = Math.max(0, game.score - 3);
+                game.currentCombo = 0;
+                updateDisplay();
+                itemEl.remove();
+            }
+        }
+    }, 30);
+
+    itemEl.dataset.interval = fallInterval;
 }
 
-/* ===== DRAG & DROP LOGIC ===== */
-
-function dragStart(e) {
-    e.dataTransfer.setData('type', e.target.dataset.type);
-    e.target.classList.add('dragging');
-    setTimeout(() => (e.target.style.display = 'none'), 0); // Hide visual while dragging
-}
-
-// Bin Event Listeners
 bins.forEach(bin => {
-    bin.addEventListener('dragover', e => {
+    bin.addEventListener('dragover', (e) => {
         e.preventDefault();
         bin.classList.add('hovered');
     });
@@ -114,103 +194,98 @@ bins.forEach(bin => {
         bin.classList.remove('hovered');
     });
 
-    bin.addEventListener('drop', e => {
+    bin.addEventListener('drop', (e) => {
         e.preventDefault();
         bin.classList.remove('hovered');
-        const type = e.dataTransfer.getData('type');
-        handleDrop(bin, type);
+
+        const itemCategory = e.dataTransfer.getData('category');
+        const draggedItem = document.querySelector('.waste-item.dragging');
+
+        if (draggedItem) {
+            checkAnswer(bin, itemCategory, draggedItem);
+        }
     });
 });
 
-function handleDrop(bin, itemType) {
+function checkAnswer(bin, itemCategory, itemEl) {
     const binType = bin.dataset.type;
-    const draggedItem = document.querySelector('.waste-item.dragging');
-    
-    if (draggedItem) {
-        if (itemType === binType) {
-            score += 10;
-            showFeedback(bin, '+10', 'green');
-        } else {
-            score -= 5;
-            showFeedback(bin, '-5', 'red');
-        }
-        scoreEl.innerText = score;
-        draggedItem.remove(); // Remove item from DOM
-    }
-}
+    game.totalAttempts++;
 
-// Fallback if drop happens outside (item usually lost in this logic, which is fine)
-gameArea.addEventListener('dragend', (e) => {
-    e.target.classList.remove('dragging');
-    e.target.style.display = 'flex'; // Show again if missed
-});
+    const isCorrect = itemCategory === binType;
 
-/* ===== TOUCH LOGIC (Mobile) ===== */
-// Simplified touch logic for "drag" on mobile
-let touchItem = null;
-
-function touchStart(e) {
-    e.preventDefault();
-    touchItem = e.target;
-    touchItem.classList.add('dragging');
-}
-
-function touchMove(e) {
-    e.preventDefault();
-    if (!touchItem) return;
-    
-    const touch = e.touches[0];
-    const gameRect = gameArea.getBoundingClientRect();
-    
-    // Move item with finger
-    touchItem.style.left = (touch.clientX - gameRect.left - 30) + 'px';
-    touchItem.style.top = (touch.clientY - gameRect.top - 30) + 'px';
-}
-
-function touchEnd(e) {
-    if (!touchItem) return;
-    
-    // Check if dropped on a bin
-    const touch = e.changedTouches[0];
-    const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-    const bin = elemBelow.closest('.bin');
-
-    if (bin) {
-        handleDrop(bin, touchItem.dataset.type);
+    if (isCorrect) {
+        const points = 10 + (game.currentCombo * 5);
+        game.score += points;
+        game.correctAttempts++;
+        game.currentCombo++;
+        showFeedback(itemEl, `+${points}`, 'correct');
     } else {
-        touchItem.classList.remove('dragging');
+        game.score = Math.max(0, game.score - 5);
+        game.currentCombo = 0;
+        showFeedback(itemEl, '-5', 'incorrect');
     }
-    touchItem = null;
+
+    updateDisplay();
+    
+    const interval = itemEl.dataset.interval;
+    if (interval) clearInterval(parseInt(interval));
+    itemEl.remove();
 }
 
-function showFeedback(element, text, color) {
+function showFeedback(element, text, type) {
     const feedback = document.createElement('div');
+    feedback.classList.add('feedback', type);
     feedback.innerText = text;
-    feedback.style.cssText = `
-        position: absolute; 
-        color: ${color}; 
-        font-weight: bold; 
-        font-size: 1.5rem; 
-        pointer-events: none;
-        animation: floatUp 1s ease-out;
-    `;
-    element.appendChild(feedback);
+
+    const rect = element.getBoundingClientRect();
+    const gameRect = gameArea.getBoundingClientRect();
+
+    feedback.style.left = (rect.left - gameRect.left + 20) + 'px';
+    feedback.style.top = (rect.top - gameRect.top + 20) + 'px';
+
+    gameArea.appendChild(feedback);
     setTimeout(() => feedback.remove(), 1000);
 }
 
-function endGame() {
-    isPlaying = false;
-    clearInterval(gameInterval);
-    clearInterval(spawnInterval);
-    finalScoreEl.innerText = score;
-    modal.style.display = 'flex';
+function updateDisplay() {
+    scoreDisplay.innerText = game.score;
+    
+    if (game.totalAttempts > 0) {
+        const accuracy = Math.round((game.correctAttempts / game.totalAttempts) * 100);
+        accuracyDisplay.innerText = accuracy + '%';
+    } else {
+        accuracyDisplay.innerText = '--';
+    }
 }
 
-// Add Float Animation
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-30px); opacity: 0; }
-}`;
-document.head.appendChild(style);
+function endGame() {
+    game.isPlaying = false;
+    clearInterval(gameTimerInterval);
+    clearInterval(spawnInterval);
+    gameArea.classList.remove('active');
+
+    document.querySelectorAll('.waste-item').forEach(el => {
+        const interval = el.dataset.interval;
+        if (interval) clearInterval(parseInt(interval));
+        el.remove();
+    });
+
+    finalScoreEl.innerText = game.score;
+    finalScoreText.innerText = game.score;
+    modal.style.display = 'flex';
+
+    startBtn.style.display = 'block';
+}
+
+// Back Button Functionality
+document.getElementById('backBtn').addEventListener('click', () => {
+    if (game.isPlaying) {
+        // Simple and effective browser confirmation
+        const quit = confirm("Do you want to quit the game? Your current score will be lost!");
+        if (quit) {
+            window.location.href = "../index.html"; // Home page ka sahi path
+        }
+    } else {
+        window.location.href = "../index.html";
+    }
+});
