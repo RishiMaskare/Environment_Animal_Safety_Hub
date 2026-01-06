@@ -1,8 +1,3 @@
-
-// =====================
-// CHAT PAGE LOGIC
-// =====================
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const chatWindow = document.getElementById("chat-window");
@@ -10,12 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendChatBtn = document.querySelector(".send-chat-btn");
   const friendsContainer = document.querySelector(".right-panel .panel-section");
 
-  // Dummy current user avatar
   const currentUserAvatar = "https://picsum.photos/seed/current/50";
 
-  // Function to add message
   function addMessage(text, self = false, avatar = currentUserAvatar) {
-    // Remove "no chat message" placeholder
     const noMsg = chatWindow.querySelector(".no-chat-msg");
     if (noMsg) noMsg.style.display = "none";
 
@@ -31,17 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     chatWindow.scrollTop = chatWindow.scrollHeight;
   }
 
-  // Send message on button click
   if (sendChatBtn && chatInput) {
     sendChatBtn.addEventListener("click", () => {
       const text = chatInput.value.trim();
       if (text !== "") {
-        addMessage(text, true); // self message
+        addMessage(text, true); 
         chatInput.value = "";
       }
     });
 
-    // Send message on Enter key
     chatInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -50,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Click on "Chat Now" to start chat with friend
   if (friendsContainer) {
     const friendBtns = friendsContainer.querySelectorAll(".chat-now-btn");
 
@@ -60,16 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const friendName = friendItem.querySelector("span").textContent;
         const friendAvatar = friendItem.querySelector("img").src;
 
-        // Clear previous messages
         chatWindow.innerHTML = "";
 
-        // Optional: show greeting
         addMessage(`You started a chat with ${friendName}`, false, friendAvatar);
       });
     });
   }
 
-  // Optional: Search friends
   const chatSearch = document.querySelector(".chat-search");
   if (chatSearch) {
     chatSearch.addEventListener("input", () => {

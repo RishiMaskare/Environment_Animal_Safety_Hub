@@ -1,6 +1,3 @@
-// =====================
-// theme-toggle
-// =====================
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('themeToggle'); 
 

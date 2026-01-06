@@ -1,15 +1,9 @@
-
-// =====================
-// Dashboard Posts
-// =====================
-
 const postsContainer = document.getElementById("posts-container");
 const loader = document.getElementById("loader");
 
 let postsData = [];
 let postIndex = 0;
 
-// Load posts JSON
 async function loadPostsJSON() {
   try {
     const response = await fetch("../../assets/data/posts.json"); // ensure this path is correct

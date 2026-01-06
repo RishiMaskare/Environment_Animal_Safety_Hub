@@ -1,9 +1,4 @@
-// =====================
-// Auth
-// =====================
-
 function login() {
-  // UI only – direct redirect
   window.location.href = "post.html";
 }
 
@@ -11,7 +6,6 @@ function verifyOtp() {
   window.location.href = "post.html";
 }
 
-// OTP TIMER
 let time = 120;
 const timerEl = document.getElementById("time");
 
