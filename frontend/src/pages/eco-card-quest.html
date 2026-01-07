@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Card Quest 🌿</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 3rem;
+      color: #2e7d32;
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .controls {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: linear-gradient(135deg, #43a047, #81c784);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 2px solid #2e7d32;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2e7d32;
+      min-width: 120px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2e7d32;
+      display: none;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Game board using grid */
+    .game-board {
+      display: grid;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s;
+      border-radius: 12px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .card-front {
+      background: #fff;
+      border: 3px solid #2e7d32;
+      font-size: 2rem;
+      color: #2e7d32;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #43a047, #81c784);
+      color: white;
+      transform: rotateY(180deg);
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .correct {
+      animation: correctAnim 0.8s forwards;
+    }
+
+    @keyframes correctAnim {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .incorrect {
+      animation: shake 0.8s;
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-8px);
+      }
+
+      40% {
+        transform: translateX(8px);
+      }
+
+      60% {
+        transform: translateX(-8px);
+      }
+
+      80% {
+        transform: translateX(8px);
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: 0;
+      pointer-events: none;
+      opacity: 0.8;
+      animation: fall 2s linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(800px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Eco Card Quest 🌎🌿</h1>
+    <div class="controls">
+      <label for="difficulty">Number of Cards: </label>
+      <select id="difficulty">
+        <option value="6">6</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+        <option value="24">24</option>
+        <option value="30">30</option>
+      </select>
+      <button id="restartBtn">Restart 🔄</button>
+    </div>
+    <div class="stats">
+      <div class="stat-card">Moves: <span id="moves">0</span></div>
+      <div class="stat-card">Score: <span id="score">0</span> 🌟</div>
+    </div>
+    <div id="message"></div>
+    <div id="game-board" class="game-board"></div>
+  </div>
+
+  <script>
+    const ecoTerms = [
+      { term: "Recycle ♻️", definition: "Convert waste into reusable material." },
+      { term: "Compost 🌱", definition: "Organic matter decomposed to enrich soil." },
+      { term: "Solar Energy ☀️", definition: "Energy harnessed from the sun." },
+      { term: "Biodiversity 🐾", definition: "Variety of life in an ecosystem." },
+      { term: "Deforestation 🌳❌", definition: "Clearing forests for human use." },
+      { term: "Conservation 💧", definition: "Protection and preservation of natural resources." },
+      { term: "Pollution 🚯", definition: "Contamination of the environment." },
+      { term: "Sustainability 🌿", definition: "Meeting needs without harming future generations." },
+      { term: "Ecosystem 🌎", definition: "Community of living organisms and environment." },
+      { term: "Greenhouse Gas 🌡️", definition: "Gas trapping heat in the atmosphere." },
+      { term: "Climate Change 🌡️🌍", definition: "Long-term shifts in temperatures & weather patterns." },
+      { term: "Water Conservation 💦", definition: "Saving water to protect the environment." },
+      { term: "Renewable Energy ⚡", definition: "Energy from sources that replenish naturally." },
+      { term: "Air Quality 🍃", definition: "Condition of the air in terms of pollution." },
+      { term: "Eco-friendly Products 🛍️", definition: "Products that have minimal environmental impact." }
+    ];
+
+    let gameBoard = document.getElementById('game-board');
+    let movesCounter = document.getElementById('moves');
+    let scoreCounter = document.getElementById('score');
+    let difficultySelect = document.getElementById('difficulty');
+    let restartBtn = document.getElementById('restartBtn');
+    let message = document.getElementById('message');
+
+    let firstCard = null, secondCard = null, lockBoard = false, moves = 0, score = 0;
+
+    function shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function generateCards(numPairs) {
+      let selectedTerms = shuffleArray([...ecoTerms]).slice(0, numPairs);
+      let cards = [];
+      selectedTerms.forEach(pair => {
+        cards.push({ content: pair.term, type: "term" });
+        cards.push({ content: pair.definition, type: "definition", match: pair.term });
+      });
+      return shuffleArray(cards);
+    }
+
+    function createCardElement(cardData) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.dataset.content = cardData.content;
+      card.dataset.type = cardData.type;
+      card.dataset.match = cardData.match || cardData.content;
+      const cardInner = document.createElement('div');
+      cardInner.classList.add('card-inner');
+      const cardFront = document.createElement('div');
+      cardFront.classList.add('card-front');
+      cardFront.textContent = '❓';
+      const cardBack = document.createElement('div');
+      cardBack.classList.add('card-back');
+      cardBack.textContent = cardData.content;
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      card.appendChild(cardInner);
+      card.addEventListener('click', flipCard);
+      return card;
+    }
+
+    function flipCard() {
+      if (lockBoard || this === firstCard) return;
+      this.classList.add('flipped');
+      if (!firstCard) { firstCard = this; return; }
+      secondCard = this;
+      moves++;
+      movesCounter.textContent = moves;
+      checkMatch();
+    }
+
+    function checkMatch() {
+      let isMatch = firstCard.dataset.match === secondCard.dataset.content ||
+        secondCard.dataset.match === firstCard.dataset.content;
+      if (isMatch) {
+        firstCard.classList.add('correct'); secondCard.classList.add('correct');
+        score += 10; scoreCounter.textContent = score;
+        resetCards();
+        if (document.querySelectorAll('.card.correct').length === document.querySelectorAll('.card').length) celebrate();
+      } else {
+        firstCard.classList.add('incorrect'); secondCard.classList.add('incorrect'); lockBoard = true;
+        setTimeout(() => { firstCard.classList.remove('flipped', 'incorrect'); secondCard.classList.remove('flipped', 'incorrect'); resetCards(); }, 1000);
+      }
+    }
+
+    function resetCards() { [firstCard, secondCard] = [null, null]; lockBoard = false; }
+
+    function startGame() {
+      gameBoard.innerHTML = ''; message.style.display = "none"; moves = 0; score = 0;
+      movesCounter.textContent = moves; scoreCounter.textContent = score;
+
+      let numCards = parseInt(difficultySelect.value);
+      let cardsData = generateCards(numCards / 2);
+
+      let perRow = (numCards <= 6) ? 3 : 6;
+      gameBoard.style.gridTemplateColumns = `repeat(${perRow}, 1fr)`;
+
+      let cardWidth = numCards <= 6 ? 150 : 120;
+      if (numCards >= 30) cardWidth = 100;
+      cardsData.forEach(data => {
+        let card = createCardElement(data);
+        card.style.width = cardWidth + 'px';
+        card.style.height = cardWidth * 1.3 + 'px';
+        gameBoard.appendChild(card);
+      });
+    }
+
+    function celebrate() {
+      message.textContent = "🎉 Congratulations! You matched all cards! 🌿";
+      message.style.display = "block";
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div'); confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360},100%,50%)`;
+        document.body.appendChild(confetti); setTimeout(() => confetti.remove(), 2000);
+      }
+    }
+
+    restartBtn.addEventListener('click', startGame);
+    difficultySelect.addEventListener('change', startGame);
+    startGame();
+  </script>
+</body>
+
+</html>
