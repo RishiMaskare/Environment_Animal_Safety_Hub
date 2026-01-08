@@ -13,171 +13,7 @@
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --green: #2e7d32;
-      --green-light: #4caf50;
-      --bg: #f4fbf6;
-      --white: #ffffff;
-      --dark: #1a1a1a;
-      --shadow: 0 15px 35px rgba(0,0,0,0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: linear-gradient(to bottom, #eef8f1, #ffffff);
-      color: var(--dark);
-      min-height: 100vh;
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 90px 20px 70px;
-      background: linear-gradient(135deg, #1b5e20, #2e7d32, #388e3c);
-      color: white;
-      border-bottom-left-radius: 45px;
-      border-bottom-right-radius: 45px;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      opacity: 0.95;
-    }
-
-    /* CONTAINER */
-    .container {
-      max-width: 1200px;
-      margin: 50px auto 80px;
-      padding: 20px;
-    }
-
-    /* FILTER */
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 10px 22px;
-      border-radius: 30px;
-      border: 2px solid var(--green);
-      background: transparent;
-      color: var(--green);
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: var(--green);
-      color: white;
-      box-shadow: 0 10px 25px rgba(46,125,50,0.35);
-      transform: translateY(-2px);
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-    }
-
-    .card-cover {
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.2rem;
-      color: white;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .card-header h3 {
-      font-size: 1.2rem;
-    }
-
-    .tag {
-      background: #e8f5e9;
-      color: var(--green);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .desc {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 15px;
-    }
-
-    .play-btn {
-      display: inline-block;
-      padding: 8px 18px;
-      background: var(--green);
-      color: white;
-      border-radius: 25px;
-      font-size: 0.85rem;
-      transition: 0.3s;
-    }
-
-    .card:hover .play-btn {
-      background: #1b5e20;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    @media(max-width: 600px) {
-      .hero h1 { font-size: 2.2rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="../../css/pages/quizzes/kids-quiz-dashboard.css">
 </head>
 
 <body>
@@ -204,7 +40,7 @@
   <div class="grid">
 
     <!-- QUIZZES -->
-    <a href="../pages/animal-safety/animal-safety-quiz.html" class="card" data-category="quiz">
+    <a href="../animal-safety/animal-safety-quiz.html" class="card" data-category="quiz">
       <div class="card-cover" style="background:#2e7d32"><i class="ri-bear-smile-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Animal Safety Quiz</h3><span class="tag">Quiz</span></div>
@@ -213,7 +49,7 @@
       </div>
     </a>
 
-    <a href="environment-game.html" class="card" data-category="quiz">
+    <a href="../games/environment-game.html" class="card" data-category="quiz">
       <div class="card-cover" style="background:#388e3c"><i class="ri-earth-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Environment Awareness Quiz</h3><span class="tag">Quiz</span></div>
@@ -222,7 +58,7 @@
       </div>
     </a>
 
-    <a href="waste-game.html" class="card" data-category="quiz">
+    <a href="../games/waste-game.html" class="card" data-category="quiz">
       <div class="card-cover" style="background:#4caf50"><i class="ri-delete-bin-6-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Waste Management Quiz</h3><span class="tag">Quiz</span></div>
@@ -250,7 +86,7 @@
     </a>
 
     <!-- GAMES -->
-    <a href="memory-card-game.html" class="card" data-category="game">
+    <a href="../games/memory-card-game.html" class="card" data-category="game">
       <div class="card-cover" style="background:#8bc34a"><i class="ri-brain-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Memory Card Flip</h3><span class="tag">Game</span></div>
@@ -260,7 +96,7 @@
     </a>
 
 
-    <a href="climate-action-game.html" class="card" data-category="game">
+    <a href="../games/climate-game.html" class="card" data-category="game">
       <div class="card-cover" style="background:#558b2f"><i class="ri-leaf-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Climate Action Game</h3><span class="tag">Game</span></div>
@@ -269,7 +105,7 @@
       </div>
     </a>
 
-    <a href="plant-care-simulation.html" class="card" data-category="game">
+    <a href="../games/plant-care-simulation.html" class="card" data-category="game">
       <div class="card-cover" style="background:#33691e"><i class="ri-seedling-line"></i></div>
       <div class="card-content">
         <div class="card-header"><h3>Plant Care Simulation</h3><span class="tag">Game</span></div>
@@ -285,26 +121,7 @@
   © 2026 EcoLife • Learn, Play & Protect Nature 💚
 </footer>
 
-<script>
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".card");
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filter = btn.dataset.filter;
-
-      cards.forEach(card => {
-        card.style.display =
-          filter === "all" || card.dataset.category === filter
-            ? "block"
-            : "none";
-      });
-    });
-  });
-</script>
+<script src="../../js/pages/quizzes/kids-quiz-dashboard.js"></script>
 
 </body>
 </html>
