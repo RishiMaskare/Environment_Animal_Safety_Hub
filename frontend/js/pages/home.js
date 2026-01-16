@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   initHeroParallax();
   initDailyQuote();
+  initTestimonialFadeIn();
 });
 
 /**
@@ -156,4 +157,59 @@ function initDailyQuote() {
   // Update the DOM
   quoteElement.textContent = `"${selectedQuote.text}"`;
   authorElement.textContent = `— ${selectedQuote.author}`;
+}
+
+/**
+ * Initialize testimonial fade-in animation on scroll
+ */
+function initTestimonialFadeIn() {
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  
+  if (testimonialCards.length === 0) {
+    return;
+  }
+  
+  // Add fade-in class to all testimonial cards
+  testimonialCards.forEach(card => {
+    card.classList.add('testimonial-fade-in');
+  });
+  
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+  
+  // Function to handle scroll and animate testimonials
+  function handleScroll() {
+    testimonialCards.forEach(card => {
+      if (isInViewport(card) && !card.classList.contains('animate')) {
+        // Add a small delay for each card to create a staggered effect
+        setTimeout(() => {
+          card.classList.add('animate');
+        }, Math.random() * 300); // Random delay between 0-300ms
+      }
+    });
+  }
+  
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    // If user prefers reduced motion, just show testimonials without animation
+    testimonialCards.forEach(card => {
+      card.classList.remove('testimonial-fade-in');
+    });
+    return;
+  }
+  
+  // Initial check
+  handleScroll();
+  
+  // Add scroll listener
+  window.addEventListener('scroll', handleScroll, { passive: true });
 }
