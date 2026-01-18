@@ -61,6 +61,7 @@
 
   /* Typography */
   --font-primary: "Poppins", sans-serif;
+  --base-font-size: 16px;
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #2e7d32, #4caf50);
