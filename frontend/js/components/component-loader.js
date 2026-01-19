@@ -79,6 +79,13 @@
         } else if (window.EcoLifeTheme && typeof window.EcoLifeTheme.init === 'function') {
             window.EcoLifeTheme.init();
         }
+
+        // Load font-size-changer.js if not already present
+        if (!window.initFontSizeChanger && !document.querySelector('script[src*="font-size-changer.js"]')) {
+            const fontSizeScript = document.createElement('script');
+            fontSizeScript.src = prefix + 'js/global/font-size-changer.js';
+            document.head.appendChild(fontSizeScript);
+        }
     }
 
     /**

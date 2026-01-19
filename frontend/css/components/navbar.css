@@ -399,6 +399,45 @@
   transform: rotate(15deg) scale(1.05);
 }
 
+/* ===== FONT SIZE CONTROLS ===== */
+.font-size-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 10px;
+}
+
+.font-size-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--white);
+  transition: var(--transition-normal);
+  border: 1px solid transparent;
+  font-size: 14px;
+}
+
+.font-size-btn:hover:not(.disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.font-size-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.font-size-btn:active:not(.disabled) {
+  transform: scale(0.95);
+}
+
 
 /* ===== USER PROFILE SECTION ===== */
 .auth-guest-only {
