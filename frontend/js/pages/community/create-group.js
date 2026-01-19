@@ -1,8 +1,5 @@
 // Create Group Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize standard hub components (navbar, footer, theme)
-    // These should be handled by navbar.js and footer.js if they are included
-    
     const createGroupForm = document.getElementById('create-group-page-form');
     if (createGroupForm) {
         createGroupForm.addEventListener('submit', handleCreateGroup);
@@ -36,8 +33,6 @@ function handleCreateGroup(e) {
     setTimeout(() => {
         console.log('New group created:', groupData);
         
-        // In a real app, we would send this to the server
-        // For now, we'll store it in localStorage to show it on the groups page
         const existingGroups = JSON.parse(localStorage.getItem('community_groups') || '[]');
         existingGroups.push({
             ...groupData,
@@ -47,7 +42,6 @@ function handleCreateGroup(e) {
         });
         localStorage.setItem('community_groups', JSON.stringify(existingGroups));
 
-        // Show success message and redirect
         alert('Success! Your community group "' + groupData.name + '" has been created.');
         window.location.href = 'groups.html';
     }, 1500);

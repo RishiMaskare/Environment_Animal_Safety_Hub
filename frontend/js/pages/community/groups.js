@@ -358,8 +358,7 @@ document.addEventListener('click', function(e) {
     // View details buttons
     if (e.target.closest('.view-btn')) {
         const groupId = e.target.closest('.view-btn').dataset.groupId;
-        // In a real app, this would navigate to group details page
-        showNotification('Group details page coming soon!', 'info');
+        window.location.href = `group-details.html?id=${groupId}`;
     }
 });
 
