@@ -40,7 +40,7 @@
     .page-container {
       display: flex;
       min-height: 100vh;
-      padding-top: 80px; /* Space for fixed navbar */
+      padding-top: 150px; /* Space for fixed navbar */
       box-sizing: border-box;
     }
     
@@ -49,11 +49,12 @@
       left: 0;
       top: 80px; /* Below navbar */
       width: 300px;
-      height: calc(100vh - 80px);
+      height: calc(100vh - 100px);
       overflow-y: auto;
       background: var(--bg-secondary);
       border-right: 1px solid var(--border-color);
       z-index: 999;
+      margin-top: 50px;
       padding-top: 20px;
     }
     
@@ -71,14 +72,11 @@
       background: var(--bg-secondary);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
-    
-    /* Theme toggle positioning fix */
-    .theme-toggle-container {
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      z-index: 1001;
+
+    .sidebar.stop {
+      position: absolute;
     }
+
     
     /* Responsive adjustments */
     @media (max-width: 1024px) {
@@ -162,17 +160,12 @@
 <body data-theme="light">
 <div id="cursor-container"></div>
 <script src="../../js/components/loadComponents.js"></script>
-  
-  <!-- Theme Toggle -->
-  <div class="theme-toggle-container">
-    <div class="theme-toggle-btn" id="themeToggle">
-      <i class="fas fa-sun"></i>
-      <i class="fas fa-moon"></i>
-    </div>
-  </div>
+
 
   <!-- Main Layout -->
   <div class="page-container">
+      <!-- Navbar will be loaded here -->
+      <div id="navbar-container"></div>
     
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -181,8 +174,7 @@
         <p class="sidebar-subtitle">Your Data, Your Control</p>
       </div>
 
-      <!-- Navbar will be loaded here -->
-      <div id="navbar-container"></div>
+    
 
       <div class="sidebar-stats">
         <div class="stat-item">
@@ -531,6 +523,29 @@
     // Start checking for navbar
     document.addEventListener('DOMContentLoaded', checkNavbarLoaded);
   </script>
+
+  <script>
+  const sidebar = document.querySelector('.sidebar');
+  const footer = document.getElementById('footer-placeholder');
+
+  window.addEventListener('scroll', () => {
+    const sidebarHeight = sidebar.offsetHeight;
+    const footerTop = footer.getBoundingClientRect().top;
+    const viewportHeight = window.innerHeight;
+
+    if (footerTop <= viewportHeight) {
+      const scrollTop = window.scrollY;
+      const stopPoint = scrollTop + footerTop - sidebarHeight - 20;
+
+      sidebar.classList.add('stop');
+      sidebar.style.top = stopPoint + 'px';
+    } else {
+      sidebar.classList.remove('stop');
+      sidebar.style.top = '80px';
+    }
+  });
+</script>
+
 
   <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ws110ZzXAkEnbVsIy9g8d";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
