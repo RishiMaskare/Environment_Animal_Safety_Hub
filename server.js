@@ -51,19 +51,45 @@ app.use((req, res, next) => {
 });
 
 // Category Management route
-app.get('/category-management', (req, res) => {
-    console.log('Category management requested');
-    const filePath = path.join(__dirname, 'frontend/pages/admin/category-management.html');
-    console.log('File path:', filePath);
-    res.sendFile(filePath);
+app.get('/category-management', (req, res, next) => {
+    try {
+        console.log('Category management requested');
+        const filePath = path.join(__dirname, 'frontend/pages/admin/category-management.html');
+        console.log('File path:', filePath);
+        res.sendFile(filePath, (err) => {
+            if (err) next(err);
+        });
+    } catch (error) {
+        next(error);
+    }
 });
 
 // Quality Control route
-app.get('/quality-control', (req, res) => {
-    console.log('Quality control requested');
-    const filePath = path.join(__dirname, 'frontend/pages/admin/quality-control.html');
-    console.log('File path:', filePath);
-    res.sendFile(filePath);
+app.get('/quality-control', (req, res, next) => {
+    try {
+        console.log('Quality control requested');
+        const filePath = path.join(__dirname, 'frontend/pages/admin/quality-control.html');
+        console.log('File path:', filePath);
+        res.sendFile(filePath, (err) => {
+            if (err) next(err);
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+// Contributor Recognition route
+app.get('/contributor-recognition', (req, res, next) => {
+    try {
+        console.log('Contributor recognition requested');
+        const filePath = path.join(__dirname, 'frontend/pages/admin/contributor-recognition.html');
+        console.log('File path:', filePath);
+        res.sendFile(filePath, (err) => {
+            if (err) next(err);
+        });
+    } catch (error) {
+        next(error);
+    }
 });
 
 // Main site route - force index.html
@@ -71,8 +97,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/index.html'));
 });
 
-// Error handling middleware
-app.use(require('./backend/middleware/errorHandler'));
+// 404 Handler - Must be AFTER all routes
+const { handle404, handleErrors } = require('./backend/middleware/errorHandlers');
+app.use(handle404);
+
+// Global Error Handler - Must be LAST
+app.use(handleErrors);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
