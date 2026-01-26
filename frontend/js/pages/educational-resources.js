@@ -316,27 +316,28 @@ const resourcesData = [
         `
     },
     {
-        id: 'traditional-farming-biodiversity',
-        title: 'Traditional Farming & Biodiversity',
-        description: 'Explore how low-intensity traditional agriculture supports wildlife and maintains ecological balance.',
+        id: 'microplastic-terrestrial-animals',
+        title: 'Microplastic Accumulation in Terrestrial Animals',
+        description: 'Investigate how microplastics enter land-based food chains and their impact on wildlife health and reproduction.',
         type: 'article',
         category: 'environment',
-        duration: '10 min read',
-        icon: 'fas fa-seedling',
+        duration: '12 min read',
+        icon: 'fas fa-microscope',
         featured: false,
         content: `
             <div class="resource-detail">
                 <div class="resource-info">
-                    <h4>Highlighting Low-Intensity Agriculture</h4>
-                    <p>Traditional farming systems provide vital ecosystems that support biodiversity. In this article, you will learn about:</p>
+                    <h4>The Invisible Threat to Terrestrial Wildlife</h4>
+                    <p>Explore the concerning rise of microplastic pollution in land-based ecosystems. This comprehensive article covers:</p>
                     <ul>
-                        <li>The benefits of crop rotation and polyculture</li>
-                        <li>Maintaining soil health and natural pest control</li>
-                        <li>How traditional landscapes serve as wildlife corridors</li>
-                        <li>Supporting local biodiversity through sustainable choices</li>
+                        <li>Pathways of microplastic entry into terrestrial food chains</li>
+                        <li>Bioaccumulation and biomagnification processes</li>
+                        <li>Physiological impacts on wildlife health</li>
+                        <li>Reproductive and developmental consequences</li>
+                        <li>Prevention and mitigation strategies</li>
                     </ul>
                     <div class="resource-actions">
-                        <a href="traditional-farming-biodiversity.html" class="btn-primary">Read Full Article</a>
+                        <a href="microplastic-terrestrial-animals.html" class="btn-primary">Read Full Article</a>
                     </div>
                 </div>
             </div>
