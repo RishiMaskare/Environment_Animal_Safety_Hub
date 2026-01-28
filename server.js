@@ -31,6 +31,7 @@ app.use('/api/reports', require('./backend/routes/reports'));
 app.use('/api/contact', rateLimits.contact, require('./backend/routes/contact'));
 app.use('/api/auth', rateLimits.auth, require('./backend/routes/auth'));
 app.use('/api/events', require('./backend/routes/events'));
+app.use('/api/medical-records', require('./backend/routes/medical-records'));
 
 // Middleware to log all requests
 app.use((req, res, next) => {
