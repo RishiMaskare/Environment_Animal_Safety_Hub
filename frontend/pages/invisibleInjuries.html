@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invisible Injuries: Psychological Trauma in Animals - Environment & Animal Safety Hub</title>
+  <meta name="description" content="Understanding psychological trauma, noise pollution effects, fireworks stress, and abandonment trauma in animals. The silent suffering we rarely discuss.">
+  <meta name="keywords" content="animal psychology, psychological trauma, noise pollution, fireworks stress, abandonment trauma, animal mental health, invisible injuries">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Global Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pwa.css">
+  
+  <!-- Component Styles -->
+  <link rel="stylesheet" href="../css/components/navbar.css">
+  <link rel="stylesheet" href="../css/components/footer.css">
+
+  <!-- Page-specific Styles -->
+  <style>
+    :root {
+      --primary-color: #8B5FBF;
+      --secondary-color: #D4BEE4;
+      --accent-color: #FF6B8B;
+      --light-bg: #F9F7FC;
+      --dark-text: #333333;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .invisible-hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #6A4B9E 100%);
+      color: white;
+      padding: 100px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invisible-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.1"/></svg>');
+      background-size: cover;
+    }
+
+    .invisible-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Trauma Stats */
+    .trauma-stats {
+      max-width: 1200px;
+      margin: -40px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(139, 95, 191, 0.15);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 5px solid var(--accent-color);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(139, 95, 191, 0.25);
+    }
+
+    .stat-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .stat-card h3 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin: 10px 0;
+    }
+
+    .stat-card p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Main Content */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    /* Trauma Types */
+    .trauma-types {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .trauma-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .trauma-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .trauma-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card-header i {
+      font-size: 2rem;
+    }
+
+    .card-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .symptoms-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .symptoms-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .symptoms-list li:before {
+      content: '⚠️';
+      margin-right: 10px;
+    }
+
+    .impact-level {
+      display: inline-block;
+      padding: 5px 15px;
+      background: var(--accent-color);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    /* Case Studies */
+    .case-studies-section {
+      margin-bottom: 60px;
+    }
+
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .case-study {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .case-study-header {
+      padding: 20px;
+      background: var(--light-bg);
+      border-bottom: 1px solid #eee;
+    }
+
+    .animal-type {
+      display: inline-block;
+      padding: 5px 15px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .case-study-content {
+      padding: 25px;
+    }
+
+    .recovery-timeline {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed #ddd;
+    }
+
+    .recovery-timeline h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    /* Healing & Support */
+    .healing-section {
+      background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+      padding: 60px 20px;
+      border-radius: 20px;
+      margin-bottom: 60px;
+    }
+
+    .healing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .healing-card {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .healing-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    /* Prevention & Action */
+    .prevention-section {
+      margin-bottom: 60px;
+    }
+
+    .action-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .action-step {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 5px solid var(--accent-color);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 35px;
+      margin-bottom: 15px;
+    }
+
+    /* Resources & Downloads */
+    .resources-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #6A4B9E 100%);
+      padding: 60px 20px;
+      border-radius: 20px;
+      color: white;
+      margin-bottom: 60px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .resource-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .download-btn {
+      background: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .download-btn:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #FFE4E8 0%, #FFD6E0 100%);
+      border-radius: 20px;
+      margin-bottom: 60px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .action-btn {
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .action-btn.primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .action-btn.secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .invisible-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .trauma-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .invisible-hero {
+        padding: 80px 20px 40px;
+      }
+      
+      .invisible-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .stat-card {
+        padding: 20px;
+      }
+      
+      .card-body {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div id="navbar-container"></div>
+
+  <!-- Hero Section -->
+  <section class="invisible-hero">
+    <h1><i class="fas fa-brain"></i> Invisible Injuries</h1>
+    <p class="hero-subtitle">Understanding Psychological Trauma in Animals - The Silent Suffering We Rarely Discuss</p>
+    <p class="tagline">"Just because you can't see the wound doesn't mean the pain isn't real."</p>
+  </section>
+
+  <!-- Trauma Statistics -->
+  <div class="trauma-stats">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-ear-deaf"></i>
+        <h3>85%</h3>
+        <p>of pet dogs show signs of noise anxiety</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-heart-crack"></i>
+        <h3>70%</h3>
+        <p>increase in animal abandonment during holidays</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-fire"></i>
+        <h3>2x</h3>
+        <p>higher cortisol levels during fireworks</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-clock"></i>
+        <h3>6+ months</h3>
+        <p>recovery time from severe trauma</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-container">
+    <!-- Trauma Types Section -->
+    <section class="trauma-types">
+      <div class="section-title">
+        <h2>Types of Psychological Trauma</h2>
+      </div>
+      
+      <div class="trauma-cards">
+        <!-- Noise Pollution Trauma -->
+        <div class="trauma-card">
+          <div class="card-header">
+            <i class="fas fa-volume-up"></i>
+            <h3>Noise Pollution Trauma</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Primary Sources:</strong> Traffic, construction, industrial noise, loud machinery</p>
+            <ul class="symptoms-list">
+              <li>Hypervigilance and constant alertness</li>
+              <li>Trembling and shaking</li>
+              <li>Hiding or attempting to escape</li>
+              <li>Loss of appetite</li>
+              <li>Digestive issues</li>
+              <li>Excessive vocalization</li>
+            </ul>
+            <p><strong>Long-term Effects:</strong> Chronic stress can lead to weakened immune system, behavioral problems, and shortened lifespan.</p>
+            <span class="impact-level">High Impact</span>
+          </div>
+        </div>
+
+        <!-- Fireworks Stress -->
+        <div class="trauma-card">
+          <div class="card-header">
+            <i class="fas fa-fire"></i>
+            <h3>Fireworks & Explosive Stress</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Why it's particularly damaging:</strong> Unpredictable, loud, and associated with bright flashes</p>
+            <ul class="symptoms-list">
+              <li>Panic attacks and disorientation</li>
+              <li>Destructive behavior</li>
+              <li>Self-harm from frantic attempts to escape</li>
+              <li>Complete shutdown (freeze response)</li>
+              <li>Loss of bladder/bowel control</li>
+              <li>Refusal to go outside for days</li>
+            </ul>
+            <p><strong>Holiday Statistics:</strong> Animal shelters see 30% more lost pets after fireworks events.</p>
+            <span class="impact-level">Severe Impact</span>
+          </div>
+        </div>
+
+        <!-- Abandonment Trauma -->
+        <div class="trauma-card">
+          <div class="card-header">
+            <i class="fas fa-person-walking-arrow-right"></i>
+            <h3>Abandonment Trauma</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Forms:</strong> Owner surrender, stray life, rehoming, neglect</p>
+            <ul class="symptoms-list">
+              <li>Separation anxiety</li>
+              <li>Trust issues with humans</li>
+              <li>Attachment disorders</li>
+              <li>Depression and withdrawal</li>
+              <li>Hoarding food or possessions</li>
+              <li>Difficulty forming new bonds</li>
+            </ul>
+            <p><strong>Recovery Challenge:</strong> Abandonment trauma can persist for years, requiring specialized behavioral therapy.</p>
+            <span class="impact-level">Chronic Impact</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies-section">
+      <div class="section-title">
+        <h2>Real Animal Stories</h2>
+      </div>
+      
+      <div class="case-study-grid">
+        <!-- Case Study 1 -->
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="animal-type"><i class="fas fa-dog"></i> Dog - "Charlie"</span>
+            <h4>Construction Noise Trauma</h4>
+          </div>
+          <div class="case-study-content">
+            <p><strong>Background:</strong> 4-year-old Labrador living next to 2-year construction site</p>
+            <p><strong>Symptoms Observed:</strong></p>
+            <ul class="symptoms-list">
+              <li>Constant pacing and panting</li>
+              <li>Refusal to eat during noisy periods</li>
+              <li>Destroying furniture when left alone</li>
+              <li>Fear of going into backyard</li>
+            </ul>
+            <div class="recovery-timeline">
+              <h4>Recovery Journey:</h4>
+              <p>6 months of desensitization training + white noise therapy + anxiety medication. Now 80% improved with occasional setbacks during loud noises.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="animal-type"><i class="fas fa-cat"></i> Cat - "Luna"</span>
+            <h4>Fireworks PTSD</h4>
+          </div>
+          <div class="case-study-content">
+            <p><strong>Background:</strong> Rescue cat traumatized by New Year's fireworks</p>
+            <p><strong>Symptoms Observed:</strong></p>
+            <ul class="symptoms-list">
+              <li>Hiding for 3 days without eating</li>
+              <li>Urinating outside litter box</li>
+              <li>Aggression toward other pets</li>
+              <li>Excessive grooming leading to bald spots</li>
+            </ul>
+            <div class="recovery-timeline">
+              <h4>Recovery Journey:</h4>
+              <p>Created "safe room" with soundproofing, pheromone therapy, and gradual exposure to recorded firework sounds at low volume. Still requires medication during fireworks season.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="animal-type"><i class="fas fa-dove"></i> Bird - "Sky"</span>
+            <h4>Abandonment Complex</h4>
+          </div>
+          <div class="case-study-content">
+            <p><strong>Background:</strong> Parrot rehomed 4 times in 2 years</p>
+            <p><strong>Symptoms Observed:</strong></p>
+            <ul class="symptoms-list">
+              <li>Plucking own feathers</li>
+              <li>Screaming when alone for minutes</li>
+              <li>Refusing to step up for new owners</li>
+              <li>Biting when approached</li>
+            </ul>
+            <div class="recovery-timeline">
+              <h4>Recovery Journey:</h4>
+              <p>Stable home for 1+ year, consistent routine, trust-building exercises, and avian behaviorist consultation. Feathers growing back, but still has separation anxiety.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Healing & Support Section -->
+    <section class="healing-section">
+      <div class="section-title">
+        <h2><i class="fas fa-hands-holding-heart"></i> Healing & Support</h2>
+      </div>
+      
+      <div class="healing-grid">
+        <div class="healing-card">
+          <i class="fas fa-volume-mute"></i>
+          <h3>Sound Management</h3>
+          <p>White noise machines, soundproofing, quiet zones, and predictable noise schedules</p>
+        </div>
+        <div class="healing-card">
+          <i class="fas fa-calendar-check"></i>
+          <h3>Consistent Routine</h3>
+          <p>Predictable schedules reduce anxiety and help traumatized animals feel secure</p>
+        </div>
+        <div class="healing-card">
+          <i class="fas fa-pills"></i>
+          <h3>Medical Support</h3>
+          <p>Anti-anxiety medications, natural supplements, and pheromone therapy under vet guidance</p>
+        </div>
+        <div class="healing-card">
+          <i class="fas fa-user-md"></i>
+          <h3>Behavioral Therapy</h3>
+          <p>Desensitization, counter-conditioning, and positive reinforcement training</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prevention & Action Section -->
+    <section class="prevention-section">
+      <div class="section-title">
+        <h2><i class="fas fa-shield-alt"></i> Prevention & Action Steps</h2>
+      </div>
+      
+      <div class="action-steps">
+        <div class="action-step">
+          <div class="step-number">1</div>
+          <h3>Create Safe Spaces</h3>
+          <p>Designate quiet rooms or areas where animals can retreat during stressful events. Use soundproofing materials and comfortable hiding spots.</p>
+        </div>
+        <div class="action-step">
+          <div class="step-number">2</div>
+          <h3>Advocate for Quiet Zones</h3>
+          <p>Petition local governments for fireworks bans in residential areas and noise restrictions near animal shelters and sanctuaries.</p>
+        </div>
+        <div class="action-step">
+          <div class="step-number">3</div>
+          <h3>Educate Your Community</h3>
+          <p>Share information about animal trauma in neighborhood groups, schools, and social media. Awareness reduces unintentional harm.</p>
+        </div>
+        <div class="action-step">
+          <div class="step-number">4</div>
+          <h3>Support Trauma-Informed Shelters</h3>
+          <p>Donate to or volunteer at shelters that provide specialized care for psychologically traumatized animals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+      <div class="section-title" style="color: white;">
+        <h2><i class="fas fa-download"></i> Resources & Downloads</h2>
+      </div>
+      
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h3>Noise Desensitization Guide</h3>
+          <p>Step-by-step guide to help animals overcome noise anxiety through gradual exposure</p>
+          <button class="download-btn" onclick="downloadResource('noise-desensitization-guide.pdf')">
+            <i class="fas fa-download"></i> Download PDF
+          </button>
+        </div>
+        
+        <div class="resource-card">
+          <h3>Fireworks Safety Checklist</h3>
+          <p>Preparation checklist to protect pets during fireworks events and holidays</p>
+          <button class="download-btn" onclick="downloadResource('fireworks-safety-checklist.pdf')">
+            <i class="fas fa-download"></i> Download PDF
+          </button>
+        </div>
+        
+        <div class="resource-card">
+          <h3>Trauma Symptom Tracker</h3>
+          <p>Printable journal to track animal behavior, triggers, and recovery progress</p>
+          <button class="download-btn" onclick="downloadResource('trauma-symptom-tracker.pdf')">
+            <i class="fas fa-download"></i> Download PDF
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <h2>Help Heal Invisible Wounds</h2>
+      <p>Join the movement to recognize and address psychological trauma in animals</p>
+      
+      <div class="cta-buttons">
+        <a href="../pages/community-action-hub.html" class="action-btn primary">
+          <i class="fas fa-hands-helping"></i> Become an Animal Advocate
+        </a>
+        <a href="../pages/volunteer.html" class="action-btn secondary">
+          <i class="fas fa-heart"></i> Volunteer at Trauma-Informed Shelters
+        </a>
+        <a href="../pages/education.html" class="action-btn secondary">
+          <i class="fas fa-graduation-cap"></i> Educate Your Community
+        </a>
+      </div>
+      
+      <p style="margin-top: 30px; font-style: italic; color: #666;">
+        "The measure of a society can be how well its people treat its animals, 
+        and how seriously we take their invisible suffering."
+      </p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script>
+    // Load navbar and footer
+    fetch('../components/navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+      });
+    
+    fetch('../components/footer.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      });
+
+    // Download functionality
+    function downloadResource(filename) {
+      alert(`Downloading ${filename}... This resource contains valuable information about helping animals with psychological trauma.`);
+      // In real implementation: window.open(`/downloads/${filename}`, '_blank');
+    }
+
+    // Add interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add click animations to cards
+      const cards = document.querySelectorAll('.trauma-card, .stat-card, .case-study');
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          this.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 150);
+        });
+      });
+
+      // Add scroll animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards and sections
+      document.querySelectorAll('.trauma-card, .stat-card, .case-study, .healing-card, .action-step, .resource-card')
+        .forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(el);
+        });
+    });
+  </script>
+</body>
+</html>
