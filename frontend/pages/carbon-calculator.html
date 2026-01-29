@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator - Track Your Environmental Impact | EWOC</title>
+    <meta name="description" content="Calculate your carbon footprint and discover personalized sustainability tips to reduce your environmental impact.">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/carbon-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-paw"></i> EWOC
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./carbon-calculator.html" class="active">Carbon Calculator</a></li>
+                <li><a href="./endangered-animals.html">Endangered Species</a></li>
+                <li><a href="./donate.html">Donate</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h1 class="hero-title">Carbon Footprint Calculator</h1>
+            <p class="hero-subtitle">Measure your environmental impact and discover ways to reduce your carbon emissions</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Global Average</h3>
+                    <p>4 tons CO₂e/year</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Target Goal</h3>
+                    <p>2 tons CO₂e/year</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Your Impact</h3>
+                    <p>Calculate Now</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance Section -->
+    <section class="importance-section">
+        <div class="container">
+            <h2 class="section-title">Why Calculate Your Carbon Footprint?</h2>
+            <div class="importance-grid">
+                <div class="importance-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Understand Your Impact</h3>
+                    <p>Identify which areas of your lifestyle contribute most to your carbon emissions</p>
+                </div>
+                <div class="importance-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Set Realistic Goals</h3>
+                    <p>Create an actionable plan to reduce your environmental footprint step by step</p>
+                </div>
+                <div class="importance-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Join the Movement</h3>
+                    <p>Be part of the global effort to combat climate change and protect our planet</p>
+                </div>
+                <div class="importance-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Make a Difference</h3>
+                    <p>Small changes in daily habits can lead to significant environmental benefits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-circle">1</div>
+                            <span class="step-label">Transportation</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-circle">2</div>
+                            <span class="step-label">Home Energy</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-circle">3</div>
+                            <span class="step-label">Food</span>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-circle">4</div>
+                            <span class="step-label">Lifestyle</span>
+                        </div>
+                        <div class="progress-step" data-step="5">
+                            <div class="step-circle">5</div>
+                            <span class="step-label">Results</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Form -->
+                <form id="carbonCalculatorForm">
+                    <!-- Step 1: Transportation -->
+                    <div class="calculator-step active" data-step="1">
+                        <h2 class="step-title">
+                            <i class="fas fa-car"></i> Transportation
+                        </h2>
+                        <p class="step-description">Tell us about your travel habits</p>
+
+                        <div class="form-group">
+                            <label for="carMiles">
+                                <i class="fas fa-road"></i> Miles driven per year
+                                <span class="tooltip" data-tooltip="Average is 12,000 miles/year">?</span>
+                            </label>
+                            <input type="number" id="carMiles" name="carMiles" min="0" value="12000" placeholder="e.g., 12000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carType">Vehicle Type</label>
+                            <select id="carType" name="carType">
+                                <option value="none">No Car</option>
+                                <option value="electric">Electric Vehicle</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="average" selected>Average Car</option>
+                                <option value="suv">SUV/Truck</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publicTransit">
+                                <i class="fas fa-bus"></i> Public transit miles per week
+                            </label>
+                            <input type="number" id="publicTransit" name="publicTransit" min="0" value="0" placeholder="e.g., 50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="flightsShort">
+                                <i class="fas fa-plane"></i> Short-haul flights per year
+                                <span class="tooltip" data-tooltip="Flights under 4 hours">?</span>
+                            </label>
+                            <input type="number" id="flightsShort" name="flightsShort" min="0" value="0" placeholder="e.g., 2">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="flightsLong">
+                                <i class="fas fa-plane-departure"></i> Long-haul flights per year
+                                <span class="tooltip" data-tooltip="Flights over 4 hours">?</span>
+                            </label>
+                            <input type="number" id="flightsLong" name="flightsLong" min="0" value="0" placeholder="e.g., 1">
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Home Energy -->
+                    <div class="calculator-step" data-step="2">
+                        <h2 class="step-title">
+                            <i class="fas fa-home"></i> Home Energy
+                        </h2>
+                        <p class="step-description">Information about your home energy usage</p>
+
+                        <div class="form-group">
+                            <label for="electricity">
+                                <i class="fas fa-bolt"></i> Monthly electricity bill (USD)
+                            </label>
+                            <input type="number" id="electricity" name="electricity" min="0" value="100" placeholder="e.g., 100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="naturalGas">
+                                <i class="fas fa-fire"></i> Monthly natural gas bill (USD)
+                            </label>
+                            <input type="number" id="naturalGas" name="naturalGas" min="0" value="50" placeholder="e.g., 50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="heatingOil">
+                                <i class="fas fa-oil-can"></i> Heating oil (gallons per year)
+                            </label>
+                            <input type="number" id="heatingOil" name="heatingOil" min="0" value="0" placeholder="e.g., 0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="renewableEnergy">Renewable energy usage</label>
+                            <select id="renewableEnergy" name="renewableEnergy">
+                                <option value="0">None</option>
+                                <option value="25">25% renewable</option>
+                                <option value="50">50% renewable</option>
+                                <option value="75">75% renewable</option>
+                                <option value="100">100% renewable</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="waterUsage">
+                                <i class="fas fa-tint"></i> Water usage level
+                            </label>
+                            <select id="waterUsage" name="waterUsage">
+                                <option value="low">Low (conscious conservation)</option>
+                                <option value="average" selected>Average</option>
+                                <option value="high">High (long showers, lawn watering)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Food Consumption -->
+                    <div class="calculator-step" data-step="3">
+                        <h2 class="step-title">
+                            <i class="fas fa-utensils"></i> Food Consumption
+                        </h2>
+                        <p class="step-description">Your dietary habits and food choices</p>
+
+                        <div class="form-group">
+                            <label for="dietType">Primary diet type</label>
+                            <select id="dietType" name="dietType">
+                                <option value="vegan">Vegan (no animal products)</option>
+                                <option value="vegetarian">Vegetarian (no meat)</option>
+                                <option value="pescatarian">Pescatarian (fish only)</option>
+                                <option value="low-meat">Low meat (few times per week)</option>
+                                <option value="average" selected>Average (meat most days)</option>
+                                <option value="high-meat">High meat (meat every meal)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localFood">
+                                <i class="fas fa-map-marker-alt"></i> Local/seasonal food consumption
+                            </label>
+                            <select id="localFood" name="localFood">
+                                <option value="never">Rarely/Never</option>
+                                <option value="sometimes" selected>Sometimes</option>
+                                <option value="often">Often (majority of food)</option>
+                                <option value="always">Always/Almost always</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organicFood">Organic food consumption</label>
+                            <select id="organicFood" name="organicFood">
+                                <option value="none">None</option>
+                                <option value="some" selected>Some items</option>
+                                <option value="most">Most items</option>
+                                <option value="all">All/Almost all</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foodWaste">
+                                <i class="fas fa-trash"></i> Food waste level
+                            </label>
+                            <select id="foodWaste" name="foodWaste">
+                                <option value="minimal">Minimal (compost/plan meals)</option>
+                                <option value="average" selected>Average</option>
+                                <option value="high">High (often throw away food)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Lifestyle -->
+                    <div class="calculator-step" data-step="4">
+                        <h2 class="step-title">
+                            <i class="fas fa-shopping-bag"></i> Lifestyle & Consumption
+                        </h2>
+                        <p class="step-description">Shopping habits, waste, and recycling</p>
+
+                        <div class="form-group">
+                            <label for="shoppingFrequency">
+                                <i class="fas fa-credit-card"></i> New clothes/goods shopping frequency
+                            </label>
+                            <select id="shoppingFrequency" name="shoppingFrequency">
+                                <option value="minimal">Minimal (only when needed)</option>
+                                <option value="average" selected>Average (monthly)</option>
+                                <option value="frequent">Frequent (weekly)</option>
+                                <option value="excessive">Excessive (multiple times/week)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="secondHand">Second-hand/thrift shopping</label>
+                            <select id="secondHand" name="secondHand">
+                                <option value="never">Never</option>
+                                <option value="rarely" selected>Rarely</option>
+                                <option value="sometimes">Sometimes</option>
+                                <option value="often">Often</option>
+                                <option value="mostly">Mostly/Always</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recycling">
+                                <i class="fas fa-recycle"></i> Recycling habits
+                            </label>
+                            <select id="recycling" name="recycling">
+                                <option value="none">Don't recycle</option>
+                                <option value="some">Recycle some items</option>
+                                <option value="most" selected>Recycle most items</option>
+                                <option value="all">Recycle everything possible</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="composting">
+                                <i class="fas fa-leaf"></i> Composting
+                            </label>
+                            <select id="composting" name="composting">
+                                <option value="no" selected>No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="singleUsePlastic">Single-use plastic usage</label>
+                            <select id="singleUsePlastic" name="singleUsePlastic">
+                                <option value="none">Avoid completely</option>
+                                <option value="minimal">Minimal use</option>
+                                <option value="average" selected>Average use</option>
+                                <option value="high">High use</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="digitalUsage">
+                                <i class="fas fa-laptop"></i> Digital device/streaming usage
+                            </label>
+                            <select id="digitalUsage" name="digitalUsage">
+                                <option value="low">Low (minimal streaming/devices)</option>
+                                <option value="average" selected>Average</option>
+                                <option value="high">High (constant streaming/gaming)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Results -->
+                    <div class="calculator-step" data-step="5">
+                        <div class="results-container">
+                            <h2 class="results-title">Your Carbon Footprint Results</h2>
+                            
+                            <!-- Total Footprint -->
+                            <div class="total-footprint">
+                                <div class="footprint-value">
+                                    <span class="value-number" id="totalFootprint">0</span>
+                                    <span class="value-unit">tons CO₂e/year</span>
+                                </div>
+                                <div class="footprint-comparison">
+                                    <div class="comparison-item">
+                                        <span class="comparison-label">vs Global Average:</span>
+                                        <span class="comparison-value" id="globalComparison">-</span>
+                                    </div>
+                                    <div class="comparison-item">
+                                        <span class="comparison-label">vs Target Goal:</span>
+                                        <span class="comparison-value" id="targetComparison">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Charts -->
+                            <div class="charts-container">
+                                <div class="chart-box">
+                                    <h3>Emissions by Category</h3>
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                                <div class="chart-box">
+                                    <h3>Category Breakdown</h3>
+                                    <canvas id="breakdownChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Category Details -->
+                            <div class="category-details" id="categoryDetails">
+                                <!-- Populated by JavaScript -->
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button type="button" class="btn-primary" onclick="downloadReport()">
+                                    <i class="fas fa-download"></i> Download Report
+                                </button>
+                                <button type="button" class="btn-secondary" onclick="resetCalculator()">
+                                    <i class="fas fa-redo"></i> Start Over
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn-nav btn-prev" id="prevBtn" onclick="changeStep(-1)">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button type="button" class="btn-nav btn-next" id="nextBtn" onclick="changeStep(1)">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="button" class="btn-nav btn-calculate" id="calculateBtn" onclick="calculateFootprint()" style="display: none;">
+                            <i class="fas fa-calculator"></i> Calculate
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Personalized Sustainability Tips</h2>
+            <p class="section-subtitle">Actionable steps to reduce your carbon footprint</p>
+
+            <!-- Tips Filters -->
+            <div class="tips-filters">
+                <div class="filter-group">
+                    <label>Impact Level:</label>
+                    <select id="impactFilter">
+                        <option value="all">All Levels</option>
+                        <option value="high">High Impact</option>
+                        <option value="medium">Medium Impact</option>
+                        <option value="low">Low Impact</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="energy">Energy</option>
+                        <option value="food">Food</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="waste">Waste</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Difficulty:</label>
+                    <select id="difficultyFilter">
+                        <option value="all">All Levels</option>
+                        <option value="easy">Easy</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tips Grid -->
+            <div class="tips-grid" id="tipsGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Join our community and start your sustainability journey today</p>
+                <div class="cta-buttons">
+                    <a href="./volunteer.html" class="btn-primary">
+                        <i class="fas fa-hands-helping"></i> Volunteer With Us
+                    </a>
+                    <a href="./donate.html" class="btn-secondary">
+                        <i class="fas fa-heart"></i> Support Our Mission
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>EWOC</h3>
+                <p>Environmental Wildlife Outreach Coalition</p>
+                <p>Creating a sustainable future together</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EWOC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/data/carbon-calculator-data.js"></script>
+    <script src="../js/carbon-calculator.js"></script>
+    <script src="../js/nav.js"></script>
+</body>
+</html>
