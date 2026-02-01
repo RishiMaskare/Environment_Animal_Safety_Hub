@@ -332,6 +332,40 @@ function selectOption(element, optionIndex) {
     remainingTime: seconds,
     quizQuestions: quiz
   });
+
+  // Provide visual feedback
+  if (optionIndex === quiz[index].a) {
+    element.classList.add("correct");
+    // Add checkmark
+    const check = document.createElement("span");
+    check.textContent = " ✅";
+    element.appendChild(check);
+  } else {
+    element.classList.add("incorrect");
+    const cross = document.createElement("span");
+    cross.textContent = " ❌";
+    element.appendChild(cross);
+
+    // Highlight correct answer
+    const buttons = document.querySelectorAll(".option");
+    if (buttons[quiz[index].a]) {
+      buttons[quiz[index].a].classList.add("correct");
+      const check = document.createElement("span");
+      check.textContent = " ✅";
+      buttons[quiz[index].a].appendChild(check);
+    }
+  }
+
+  // Disable all options to prevent changing answer
+  document.querySelectorAll(".option").forEach(btn => {
+    btn.disabled = true;
+    btn.style.cursor = "default";
+  });
+
+  // Auto-advance after short delay
+  setTimeout(() => {
+    nextQuestion();
+  }, 1500);
 }
 
 // ===== QUESTION NAVIGATION =====
@@ -454,3 +488,10 @@ document.addEventListener('mousemove', (e) => {
     }
   });
 });
+
+// Expose functions to global window object for HTML inline events
+window.startQuiz = startQuiz;
+window.resumeQuiz = resumeQuiz;
+window.nextQuestion = nextQuestion;
+window.showReview = showReview;
+window.selectOption = selectOption; // Though usually called via listener, good to have if needed check

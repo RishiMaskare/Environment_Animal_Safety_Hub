@@ -11,11 +11,14 @@
 .hero-title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
   opacity: 0.9;
+  margin-bottom: 20px;
+  color: #fff !important;
 }
 
 .hero-stats {
@@ -86,6 +89,8 @@
   padding: 30px;
   border-radius: 10px;
   box-shadow: var(--shadow);
+  line-height: 1.6;
+
 }
 
 [data-theme="dark"] .content-main {
@@ -97,6 +102,15 @@
   color: var(--primary-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
+
+}
+.causes{
+  margin-top:1.2rem;
+  margin-bottom:1.2rem;
+  border-color: var(--primary-color);
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  padding: 10px 0;
 }
 
 .content-main h3 {

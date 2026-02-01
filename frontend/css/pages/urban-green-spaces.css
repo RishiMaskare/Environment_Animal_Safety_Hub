@@ -43,7 +43,8 @@ body {
   margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
-  margin-top:2rem ;
+  margin-top:5rem ;
+
 }
 
 .hero::before {
