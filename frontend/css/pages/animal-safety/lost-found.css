@@ -1,4 +1,4 @@
-/* Lost & Found Pets Page Styles */
+﻿/* Lost & Found Pets Page Styles */
 
 /* Hero Section */
 .lost-found-hero {
@@ -624,7 +624,7 @@
     background: var(--bg-color);
     color: var(--text-color);
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
+    
     transition: all 0.3s ease;
 }
 
@@ -681,7 +681,7 @@
 }
 
 input[type="checkbox"]:checked+.checkbox-custom::after {
-    content: '✓';
+    content: 'âœ“';
     position: absolute;
     top: 50%;
     left: 50%;

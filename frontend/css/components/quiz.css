@@ -10,7 +10,7 @@
 /* ===== BASE RESET ===== */
 * {
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    
 }
 
 body {
@@ -718,7 +718,7 @@ footer {
 
 * {
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    
     transition: all 0.25s ease;
 }
 
