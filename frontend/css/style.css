@@ -3110,40 +3110,97 @@ select {
 }
 /* Kids Quiz Section */
 .kids-quiz-section {
-  padding: var(--section-padding);
+  padding: 30px 0 70px 0; /* smaller top padding */
+  margin-top: 0;
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
 
+/* Remove default heading spacing */
+.kids-quiz-section h2 {
+  margin-top: 0;
+}
+
+.kids-quiz-section p {
+  margin-top: 10px;
+}
+
+/* Layout */
 .quiz-content {
   display: flex;
-  gap: 60px;
+  gap: 50px;
   align-items: center;
   flex-wrap: wrap;
 }
 
+/* Left text */
 .quiz-text {
   flex: 1;
   min-width: 300px;
 }
 
+/* Right image */
 .quiz-image {
   flex: 1;
   min-width: 300px;
+  display: flex;
+  justify-content: center;
 }
 
+/* Image container */
 .quiz-image-wrapper {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  width: 100%;
 }
 
+/* Image */
 .quiz-image-wrapper img {
   width: 100%;
-  height: 400px;
+  height: 350px;
   object-fit: cover;
+  display: block; /* removes inline image gap */
+}
+
+/* Background decorative shapes */
+.quiz-bg-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.quiz-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  top: 0;
+  left: -60px;
+  background: #6dd5ed;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  top: 100px;
+  right: -40px;
+  background: #a8e063;
+}
+
+.shape-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 50px;
+  left: 30%;
+  background: #ffd194;
 }
 
 /* Testimonials Section */
